@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.authentication import TokenAuthentication
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
@@ -44,7 +45,7 @@ def poll_detail(request, pk):
 
 class PollListView(BasicAuthentication,
                 generics.ListCreateAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated & (IsAdmin | IsPollster)]
     queryset = Poll.objects.all()
     serializer_class = PollSerializer

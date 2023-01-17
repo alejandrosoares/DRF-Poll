@@ -23,6 +23,7 @@ swagger_schema = get_swagger_view(title='Polls API')
 urlpatterns = [
     path('users/', include('users.urls')),
     path('polls/', include('polls.urls')),
+    path('auth/', include('authjwt.urls')),
     path('admin/', admin.site.urls),
     path('swagger/', swagger_schema)
 ]
